@@ -10,7 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Fuzzer extends Application{
+public class Main extends Application{
 	
 	private Label label_url, label_status;
 	private TextField text_url;
@@ -30,7 +30,6 @@ public class Fuzzer extends Application{
 		
 		//Init actions
 		initListeners();
-		
 		
 		//Launch Window
 		stage.setTitle("Fuzzer");
@@ -58,6 +57,10 @@ public class Fuzzer extends Application{
 			
 			//Log action
 			Log.log(LogType.INFO, "Attempt fuzz on " + url);
+			
+			Crawl crawl = new Crawl(url);
+			crawl.init();
+			
 		});
 	}
 
@@ -88,9 +91,7 @@ public class Fuzzer extends Application{
 		status.setMaxWidth(300);
 		status.setMinWidth(300);
 		
-		
-		
-		
+		//MAIN CONTAINER
 		BorderPane bp = new BorderPane();
 		bp.setCenter(form);
 		bp.setBottom(action);

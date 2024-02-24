@@ -16,7 +16,25 @@ public class Log {
 		//DATE: INFO: MESSAGE \n
 		
 		//messages must not be empty and can be up to 256 chars.
-		String entry = Log.getTimestamp() + ":" + type + ":" + message;
+		String entry = Log.getTimestamp() + ":" + type + ":" + message + "\n";
+		
+		logf(entry);
+		logc(entry);
+	}
+	
+	/**
+	 * Prints to a log file and console with more detail
+	 */
+	public static void log(LogType type, String message, String className, String methodName) {
+		if(!Config.LOGGING) {
+			return;
+		}
+		
+		//records look like: 
+		//DATE: INFO: MESSAGE \n
+		
+		//messages must not be empty and can be up to 256 chars.
+		String entry = Log.getTimestamp() + ":" + type + ":" + className + ":" + methodName + ":" + message + "\n";
 		
 		logf(entry);
 		logc(entry);
@@ -29,7 +47,7 @@ public class Log {
 		FileWriter fw;
 		
 		try {
-			fw = new FileWriter(Config.LOG_FILENAME);
+			fw = new FileWriter(Config.LOG_FILENAME, true);
 			fw.write(entry);
 			fw.close();
 		} catch (IOException e) {
@@ -42,7 +60,7 @@ public class Log {
 	/**
 	 * Prints the log entry to the console
 	 */
-	private static void logc(String entry) {
+	public static void logc(String entry) {
 		System.out.println(entry);
 	}
 	

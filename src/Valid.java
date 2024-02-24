@@ -8,7 +8,6 @@ public class Valid {
 		if(input.length() < 5 || input.length() > 256)
 			return false;
 		
-		//whitelist chars
 		Pattern p = Pattern.compile("^http(s)?:\\/\\/(.*?)\\.[a-z]{2,52}\\/.*$");
 		Matcher m = p.matcher(input.toLowerCase());
 		
